@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "definitions",
-        tags = "@testAserciones",
+        tags = "@PruebaHS",
         publish = true
 )
 
