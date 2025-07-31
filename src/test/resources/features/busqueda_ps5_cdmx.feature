@@ -15,5 +15,4 @@
      And filtrar por origen del envio "Local"
      And ordenar los resultados por "mayor a menor precio"
 
-     Then obtener el nombre y precio de los primeros 5 productos
-     And mostrar los productos en la consola
+     Then obtener el nombre y precio de los primeros 5 productos y mostrar en consola

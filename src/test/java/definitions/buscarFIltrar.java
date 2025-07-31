@@ -74,29 +74,43 @@ public class buscarFIltrar {
     }
 
 
-    @Then("obtener el nombre y precio de los primeros {int} productos")
+
+    @Then("obtener el nombre y precio de los primeros {int} productos y mostrar en consola")
     public void obtener_el_nombre_y_precio_de_los_primeros_productos(Integer cantidad) throws InterruptedException {
-        Thread.sleep(1000);
-            WebElement seccionResultados = driver.findElement(By.cssSelector(
-                    "#root-app > div > div.ui-search-main.ui-search-main--only-products.ui-search-main--with-topkeywords > section"
-            ));
+        Thread.sleep(2000); // Espera simple (puedes usar WebDriverWait si prefieres)
 
-            List<WebElement> productos = seccionResultados.findElements(By.cssSelector(".ui-search-layout__item"));
+        List<WebElement> productos = driver.findElements(By.cssSelector(".ui-search-layout__item"));
 
-            int limite = Math.min(cantidad, productos.size());
-            for (int i = 0; i < limite; i++) {
-                WebElement producto = productos.get(i);
-
-                String nombre = producto.findElement(By.cssSelector("h2")).getText();
-
-                String precio = producto.findElement(By.cssSelector("span.andes-money-amount__fraction")).getText();
-
-                System.out.println((i + 1) + ") Producto: " + nombre + " | Precio: $" + precio);
-            }
+        if (productos.isEmpty()) {
+            System.out.println("No se encontraron productos en la página.");
+            return;
         }
+        System.out.println("7) Obtener nombre precio de los 5 primeros productos");
+
+        int limite = Math.min(cantidad, productos.size());
+
+        for (int i = 0; i < limite; i++) {
+            WebElement producto = productos.get(i);
+
+            String nombre = "Nombre no disponible";
+            String precio = "Precio no disponible";
+
+            try {
+                nombre = producto.findElement(By.cssSelector(".poly-component__title")).getText();
+            } catch (Exception e) {
+                System.out.println("No se encontró nombre para producto #" + (i + 1));
+            }
+
+            try {
+                precio = producto.findElement(By.cssSelector("span.andes-money-amount__fraction")).getText();
+            } catch (Exception e) {
+                System.out.println("No se encontró precio para producto #" + (i + 1));
+            }
+
+            System.out.println((i + 1) + ") Producto: " + nombre + " | Precio: $" + precio);
+        }
+    }
 }
-
-
 
 
 
