@@ -1,4 +1,6 @@
 ***************** Instrucciones **************
+
+
 EL proyecto esta hecho con Java, Cucumber, Selenium, 
 
 1) Sincronizar el archivo pom.xml para importar las dependecias de Selenium, Cucumber y Junit
